@@ -1,41 +1,6 @@
 import { tokens } from "../theme";
 import { getData } from "./fetchData";
 
-export const mockLevels = [
-  {
-    times: "17.00",
-    level: "17 m",
-  },
-  {
-    times: "16.00",
-    level: "15 m",
-  },
-  {
-    times: "15.00",
-    level: "14 m",
-  },
-  {
-    times: "14.00",
-    level: "13 m",
-  },
-  {
-    times: "13.00",
-    level: "14 m",
-  },
-  {
-    times: "12.00",
-    level: "11 m",
-  },
-  {
-    times: "11.00",
-    level: "10 m",
-  },
-  {
-    times: "10.00",
-    level: "11 m",
-  },
-];
-
 export const mockBarData = [
   {
     country: "AD",
@@ -163,3 +128,12 @@ export const mockLineData = [
     data: data,
   },
 ];
+
+const levelData = data.map(item => {
+  return {
+    times: item.x,
+    level: item.y + " m"
+  }
+})
+
+export const mockLevels = levelData
