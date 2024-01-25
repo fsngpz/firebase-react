@@ -1,14 +1,32 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { mockLevels } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
 import StatBox from "../../components/StatBox";
+import { useEffect, useState } from "react";
+import {getData} from "../../data/fetchData"
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [level, setLevel] = useState([])
+
+  function dataLevel(value){
+    const levelData = value.map(item => {
+      return {
+        times: item.x,
+        level: item.y + " m"
+      }
+    })
+
+    setLevel(levelData)
+    console.log("LEVEL " , levelData);
+  }
+
+  useEffect(() => {
+    getData(dataLevel)
+  }, [])
 
   return (
     <Box m="20px">
@@ -183,7 +201,7 @@ const Dashboard = () => {
               Recent
             </Typography>
           </Box>
-          {mockLevels.map((water, i) => (
+          {level.map((water, i) => (
             <Box
               key={`${water.txId}-${i}`}
               display="flex"

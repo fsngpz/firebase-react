@@ -9,12 +9,12 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const colors = tokens(theme.palette.mode);
   const [lineChart, setLineChart] = useState([])
 
-  function dataChart(oom){
+  function dataChart(value){
     let line = [
       {
         id: "Water level",
         color: tokens("dark").greenAccent[500],
-        data: oom,
+        data: value,
       },
     ];
     setLineChart(line)

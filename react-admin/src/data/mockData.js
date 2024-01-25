@@ -119,15 +119,8 @@ function dataChart(oom){
   data = oom
   console.log("DATAAAA", data)
 }
-getData(dataChart)
 
-export const mockLineData = [
-  {
-    id: "Water level",
-    color: tokens("dark").greenAccent[500],
-    data: data,
-  },
-];
+getData(dataChart)
 
 const levelData = data.map(item => {
   return {
@@ -136,4 +129,10 @@ const levelData = data.map(item => {
   }
 })
 
-export const mockLevels = levelData
+// export const mockLevels = levelData
+
+export function mockLevels(cb){
+  cb(levelData)
+  console.log("LEVEL DATA", levelData)
+  return levelData
+}
