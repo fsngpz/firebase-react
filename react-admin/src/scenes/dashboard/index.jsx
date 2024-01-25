@@ -6,11 +6,13 @@ import LineChart from "../../components/LineChart";
 import StatBox from "../../components/StatBox";
 import { useEffect, useState } from "react";
 import {getData} from "../../data/fetchData"
+import dayjs from 'dayjs'
 
 const Dashboard = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [level, setLevel] = useState([])
+  const date = dayjs(new Date().toLocaleDateString()).format("YYYY-MM-DD")
 
   function dataLevel(value){
     const levelData = value.map(item => {
@@ -25,7 +27,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    getData(dataLevel)
+    getData(dataLevel, date)
   }, [])
 
   return (

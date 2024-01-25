@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getData } from "../data/fetchData";
 import { tokens } from "../theme";
 
-const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
+const LineChart = ({ date, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [lineChart, setLineChart] = useState([])
@@ -21,7 +21,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   }
 
   useEffect(() => {
-    getData(dataChart)
+    getData(dataChart, date)
   }, [])
 
   return (

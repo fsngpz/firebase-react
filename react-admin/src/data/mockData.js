@@ -112,27 +112,3 @@ export const mockPieData = [
     value: 584,
     color: "hsl(344, 70%, 50%)",
   },
-];
-
-let data = []
-function dataChart(oom){
-  data = oom
-  console.log("DATAAAA", data)
-}
-
-getData(dataChart)
-
-const levelData = data.map(item => {
-  return {
-    times: item.x,
-    level: item.y + " m"
-  }
-})
-
-// export const mockLevels = levelData
-
-export function mockLevels(cb){
-  cb(levelData)
-  console.log("LEVEL DATA", levelData)
-  return levelData
-}

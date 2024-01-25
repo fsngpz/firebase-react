@@ -6,10 +6,12 @@ import Header from '../../components/Header';
 import LineChart from '../../components/LineChart';
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
+import dayjs from 'dayjs'
 
 const History = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [dateValue, setDateValue] = React.useState(null)
 
   return(
     <Box m="20px">
@@ -18,7 +20,13 @@ const History = () => {
         <Header title="History" subtitle="Records of water level" />
         </Box>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker />
+          <DatePicker
+          value={dayjs(dateValue)}
+          onChange={(newValue) => {
+            setDateValue(dayjs(newValue).format("YYYY-MM-DD"))
+            
+          }}
+          />
         </LocalizationProvider>
 
                 {/* ROW 2 */}
@@ -54,7 +62,9 @@ const History = () => {
             </Box>
           </Box>
           <Box height="250px" m="-20px 0 0 0">
-            <LineChart isDashboard={true} />
+            <LineChart
+            isDashboard={true}  
+            date={dateValue == null ?  dayjs(new Date().toLocaleDateString()).format("YYYY-MM-DD") : dateValue}/>
           </Box>
         </Box>
         </Box>   
