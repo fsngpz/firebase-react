@@ -111,4 +111,4 @@ export const mockPieData = [
     label: "scala",
     value: 584,
     color: "hsl(344, 70%, 50%)",
-  },
+  }
